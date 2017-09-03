@@ -1,0 +1,11 @@
+---
+- name: Copy certificates
+  synchronize:
+    src: '{{ letsencrypt_route53_dir }}/etc/live/'
+    dest: '{{ letsencrypt_route53_deploy_dir }}/'
+    copy_links: yes
+    owner: no
+    group: no
+    rsync_opts:
+      - '--chmod=Du-w,go-rwx'
+      - '--chmod=Fu-wx,go-rwx'

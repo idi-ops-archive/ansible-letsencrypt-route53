@@ -1,0 +1,4 @@
+- hosts: all
+  roles:
+    - role: ansible-letsencrypt-route53
+      letsencrypt_route53_action: install

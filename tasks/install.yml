@@ -1,0 +1,33 @@
+---
+- name: Enable EPEL repository
+  package:
+    name: epel-release
+    state: latest
+  tags:
+    - skip_ansible_lint
+
+# Around 2017-07-12, installing epel-release stopped being idempotent. The
+# latest epel-release package available on a vanilla CentOS 7 box was 7.9, but
+# installing 7.9 made 7.10 available. https://bugs.centos.org/view.php?id=13644
+#
+# As a workaround, we install the package twice so that the target machine is
+# fully up-to-date.
+- name: Update EPEL repository
+  package:
+    name: epel-release
+    state: latest
+  tags:
+    - skip_ansible_lint
+  
+- name: Install RPM packages
+  package:
+    name: '{{ item }}'
+    state: latest
+  with_items: '{{ letsencrypt_route53_rpm_packages }}'
+
+- name: Install pip packages
+  pip:
+    name: '{{ item }}'
+    virtualenv: '{{ letsencrypt_route53_dir }}'
+    state: latest
+  with_items: '{{ letsencrypt_route53_pip_packages }}'

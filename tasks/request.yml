@@ -1,0 +1,15 @@
+---
+- name: Request certificates
+  command: >
+    {{ letsencrypt_route53_dir }}/bin/certbot 
+    certonly -n --agree-tos --dns-route53
+    -d {{ item.domains | join(' -d ') }}
+    --email {{ letsencrypt_route53_email }}
+    --config-dir {{ letsencrypt_route53_dir }}/etc
+    --work-dir {{ letsencrypt_route53_dir }}/tmp
+    --logs-dir {{ letsencrypt_route53_dir }}/logs
+  with_items: '{{ letsencrypt_route53_certificates }}'
+  when: item.new_cert is defined
+  environment:
+    AWS_ACCESS_KEY_ID: '{{ letsencrypt_route53_aws_access_key }}'
+    AWS_SECRET_ACCESS_KEY: '{{ letsencrypt_route53_aws_secret_key }}'

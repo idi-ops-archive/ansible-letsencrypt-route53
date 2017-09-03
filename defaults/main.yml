@@ -1,0 +1,18 @@
+---
+
+letsencrypt_route53_certificates: []
+
+# AWS Key ID (mandatory)
+#letsencrypt_route53_aws_key_id: ''
+
+# AWS Secret ID (mandatory)
+#letsencrypt_route53_aws_secret_id: ''
+
+# E-mail address used to register certificates (mandatory)
+#letsencrypt_route53_email: user@example.com
+
+# Directory where all tools and certificates will live in the control host
+letsencrypt_route53_dir: /srv/letsencrypt-route53
+
+# Directory where certificates will be copied to in the destination hosts
+letsencrypt_route53_deploy_dir: /etc/letsencrypt

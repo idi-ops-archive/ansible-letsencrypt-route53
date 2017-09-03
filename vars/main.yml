@@ -1,0 +1,14 @@
+---
+letsencrypt_route53_rpm_packages:
+  - python
+  - python-pip
+  - python-virtualenv
+  - openssl-devel
+  - libffi
+  - libffi-devel
+
+letsencrypt_route53_pip_packages:
+  - pip
+  - setuptools
+  - certbot
+  - certbot-route53

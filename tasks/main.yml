@@ -1,0 +1,8 @@
+---
+
+- fail:
+    msg: Valid actions are install, request, renew or deploy
+  when: "letsencrypt_route53_action not in ('install','request','renew','deploy')"
+
+- include: '{{ letsencrypt_route53_action }}.yml'
+  when: "letsencrypt_route53_action is defined and letsencrypt_route53_action in ('install','request','renew','deploy')"
