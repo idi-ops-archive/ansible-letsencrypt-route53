@@ -7,7 +7,7 @@
     --work-dir {{ letsencrypt_route53_dir }}/tmp
     --logs-dir {{ letsencrypt_route53_dir }}/logs
   environment:
-    AWS_ACCESS_KEY_ID: '{{ letsencrypt_route53_aws_key_id }}'
-    AWS_SECRET_ACCESS_KEY: '{{ letsencrypt_route53_aws_secret_id }}'
+    AWS_ACCESS_KEY_ID: '{{ letsencrypt_route53_aws_access_key }}'
+    AWS_SECRET_ACCESS_KEY: '{{ letsencrypt_route53_aws_secret_key }}'
   register: certbot_renew
   changed_when: not certbot_renew.stdout|search('No renewals were attempted')
